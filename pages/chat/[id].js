@@ -13,6 +13,8 @@ function chat({ chat, messages }) {
     <Container>
       <Head>
         <title>chat with {getRecipientEmail(chat.users,user)}</title>
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/640px-WhatsApp.svg.png" />
+
       </Head>
       <Sidebar />
       <ChatContainer>

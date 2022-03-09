@@ -13,6 +13,7 @@ import firebase from "firebase";
 import { getRecipientEmail } from "../utils/getRecipientEmai";
 import Message from "./Message";
 import TimeAgo from "timeago-react";
+import Image from "next/image";
 
 function ChatScreen({ chat, messages }) {
   const [user] = useAuthState(auth);
@@ -100,6 +101,8 @@ function ChatScreen({ chat, messages }) {
             <p>Loading last active....</p>
           )}
         </HeaderInformation>
+        <Image width={200} height={70} src="/logo.png" alt="" />
+
         <HeaderIcons>
           <IconButton>
             <AttachFile />
@@ -183,3 +186,4 @@ const InputContainer = styled.form`
   background-color: white;
   z-index: 100;
 `;
+

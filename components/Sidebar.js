@@ -8,7 +8,7 @@ import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Chat from "./Chat";
-
+import { Logout } from "@mui/icons-material";
 
 function Sidebar() {
   const [user] = useAuthState(auth);
@@ -16,13 +16,13 @@ function Sidebar() {
   const chatSearchObj = {};
 
   const userChatRef = db
-  .collection("chats")
-  .where("users", "array-contains", user.email);
+    .collection("chats")
+    .where("users", "array-contains", user.email);
 
   const [chatsSnapshot] = useCollection(userChatRef);
 
   const createChat = () => {
-    const userEmailInput = prompt('Enter the gmail of the user to chat with: ');
+    const userEmailInput = prompt("Enter the gmail of the user to chat with: ");
 
     if (!userEmailInput) return null;
 
@@ -31,7 +31,7 @@ function Sidebar() {
       !chatAlreadyExsists(userEmailInput) &&
       userEmailInput !== user.email
     ) {
-      db.collection('chats').add({
+      db.collection("chats").add({
         users: [user.email, userEmailInput],
       });
     }
@@ -42,8 +42,6 @@ function Sidebar() {
       (chat) =>
         chat.data().users.find((user) => user === recipientEmail)?.length > 0
     );
-
-  
 
   const goToHome = () => {
     router.push(`/`);
@@ -66,7 +64,13 @@ function Sidebar() {
   return (
     <Container>
       <Header>
-        <UserAvatar src={user.photoURL} onClick={() => auth.signOut()} />
+        <Log>
+          <UserAvatar src={user.photoURL} />
+          <IconButton>
+            <LoggingOut onClick={() => auth.signOut()} />
+          </IconButton>
+        </Log>
+
         <IconsContainer>
           <IconButton>
             <ChatIcon />
@@ -87,12 +91,8 @@ function Sidebar() {
 
       {/* List of Chats */}
       {chatsSnapshot?.docs.map((chat) => (
-          <Chat
-            key={chat.id}
-            id={chat.id}
-            users={chat.data().users}
-          />
-        ))}
+        <Chat key={chat.id} id={chat.id} users={chat.data().users} />
+      ))}
     </Container>
   );
 }
@@ -128,6 +128,7 @@ const Header = styled.div`
 
 const UserAvatar = styled(Avatar)`
   cursor: pointer;
+  margin-right: 10px;
 
   :hover {
     opacity: 0.8;
@@ -156,3 +157,8 @@ const SidebarButton = styled(Button)`
     border-bottom: 1px solid whitesmoke;
   }
 `;
+const Log = styled.div`
+  display: flex;
+`;
+
+const LoggingOut = styled(Logout)``;
