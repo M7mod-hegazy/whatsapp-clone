@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getRecipientEmail } from "../../utils/getRecipientEmai";
 
 function chat({ chat, messages }) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user] = useAuthState(auth);
 
   return (
