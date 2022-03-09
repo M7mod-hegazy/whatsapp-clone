@@ -1,0 +1,27 @@
+To make New App:
+=> npx install-next-app (newApp)
+
+To Start Server:
+=> yarn dev
+
+To install styled-components:
+=> yarn add styled-components
+
+to install material-ui:
+=> yarn add @material-ui/core
+=> yarn add @mui/icons-material    
+
+to install firebase:
+=> yarn add firebase   ||  yarn add firebase@8.0.0
+=> yarn add firebase-tools
+
+to install email-validator:
+=> yarn add email-validator
+=> we use this to validate the input emails to check if its right email
+
+to install react-firebase-hooks:
+=> yarn add react-firebase-hooks
+**yarn add react-firebase-hooks@3.0.4
+
+to add loading spiner 
+=> yarn add better-react-spinkit
